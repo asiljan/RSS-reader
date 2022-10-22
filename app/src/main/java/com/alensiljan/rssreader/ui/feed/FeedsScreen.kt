@@ -16,9 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alensiljan.rssreader.ui.theme.Teal200
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun RssFeeds(viewModel: FeedViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+fun RssFeeds(viewModel: FeedViewModel = getViewModel()) {
 
     LaunchedEffect(Unit) {
         viewModel.onUIIntent(UIFeedIntent.FetchRssFeeds)
