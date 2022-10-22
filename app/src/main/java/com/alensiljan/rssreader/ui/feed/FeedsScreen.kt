@@ -9,6 +9,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,7 +18,14 @@ import androidx.compose.ui.unit.dp
 import com.alensiljan.rssreader.ui.theme.Teal200
 
 @Composable
-fun RssFeeds() {
+fun RssFeeds(viewModel: FeedViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+
+    LaunchedEffect(Unit) {
+        viewModel.onUIIntent(UIFeedIntent.FetchRssFeeds)
+    }
+
+    val uiState = viewModel.uiState.collectAsState().value
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -26,13 +35,7 @@ fun RssFeeds() {
         },
         content = {
             //TODO connect with viewModel getFeeds
-            FeedsList(
-                listOf(
-                    Pair("The NY Times", "The New York Times aims to create a space where..."),
-                    Pair("BBC News", "Get latest news"),
-                    Pair("BBC Sport", "Get latest sport news")
-                )
-            )
+            FeedsList(uiState.activeFeeds)
         }
     )
 }
