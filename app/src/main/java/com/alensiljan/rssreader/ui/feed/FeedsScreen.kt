@@ -14,7 +14,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.alensiljan.rssreader.domain.model.Feed
 import com.alensiljan.rssreader.ui.theme.Teal200
 import org.koin.androidx.compose.getViewModel
 
@@ -42,7 +45,7 @@ fun RssFeeds(viewModel: FeedViewModel = getViewModel()) {
 }
 
 @Composable
-private fun FeedsList(feeds: List<Pair<String, String>>) {
+private fun FeedsList(feeds: List<Feed>) {
     LazyColumn {
         items(feeds) { feed ->
             Row(
@@ -51,8 +54,8 @@ private fun FeedsList(feeds: List<Pair<String, String>>) {
             ) {
 //                Image(painter = painterResource(id = R.drawable.picture_frame), contentDescription = "")
                 Column {
-                    Text(feed.first)
-                    Text(feed.second)
+                    Text(text = feed.feedTitle, fontSize = 17.sp)
+                    Text(text = feed.feedDescription, fontSize = 14.sp)
                 }
             }
         }

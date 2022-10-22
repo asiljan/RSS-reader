@@ -1,8 +1,9 @@
 package com.alensiljan.rssreader.domain.repository
 
+import com.alensiljan.rssreader.domain.model.Feed
 import kotlinx.coroutines.flow.Flow
 
-//TODO define data classes and appropriate mappers
+//TODO appropriate mappers, data models and introduce usecases
 interface FeedsRepository {
-    suspend fun getFeeds(): Flow<List<Pair<String, String>>>
+    suspend fun getFeeds(): Flow<List<Feed>>
 }

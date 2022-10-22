@@ -2,6 +2,7 @@ package com.alensiljan.rssreader.ui.feed
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alensiljan.rssreader.domain.model.Feed
 import com.alensiljan.rssreader.domain.repository.FeedsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -9,7 +10,7 @@ import kotlinx.coroutines.launch
 
 data class FeedViewState(
     val isLoading: Boolean = false,
-    val activeFeeds: List<Pair<String, String>> = emptyList()
+    val activeFeeds: List<Feed> = emptyList()
 )
 
 sealed class UIFeedIntent {
